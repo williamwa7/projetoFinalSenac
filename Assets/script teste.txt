@@ -1,0 +1,35 @@
+numeroCadastroSerie = 0;
+
+function salvar() {
+	const cliente = {
+		nome: document.getElementById("nome").value,
+		email: document.getElementById("email").value,
+		tel: document.getElementById("tel").value,
+	};
+	numeroCadastroSerie++;
+	
+	//Salva no localStorage
+	localStorage.setItem(numeroCadastroSerie, JSON.stringify(cliente));
+
+	//Limpa os campos
+	document.getElementById("nome").value = "";
+	document.getElementById("email").value = "";
+	document.getElementById("tel").value = "";
+	
+	//Busca todos os dados salvos
+	listar();
+}
+
+function listar() {
+	//loop para mostrar todos os dados
+	for (let i = 1; i <= localStorage.length; i++) {
+		const cliente = JSON.parse(localStorage.getItem(i));
+		const saida = document.getElementById("saida");
+		saida.innerHTML = `<p>${cliente.nome} - ${cliente.email} - ${cliente.tel}</p>`;
+	}
+}
+
+// // Pegar o elemento modal
+// const modal = document.getElementById("modal");
+// //Fazer o modal desaparecer
+// modal.style.display = "none";

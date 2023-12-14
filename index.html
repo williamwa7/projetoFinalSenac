@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de clientes</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="bg-primary d-flex py-3 justify-content-center align-items-center">
+        <span class=" d-flex text-light fw-bold fs-4 align-content-center">CADASTRO DE CLIENTES</span>
+    </header>
+    <main>
+        <section id="entradaDados" class="card p-5 mt-4 mx-5 shadow bg-primary">
+            <form action="#">
+                <div class="d-flex gap-5 mb-3">
+                    <input class="form-control" id="fNome" type="text" required placeholder="Nome Completo">
+                    <input class="form-control" id="fEmail" type="email" required placeholder="E-mail">
+                    <input class="form-control" id="fTel" type="tel" required placeholder="Telefone">
+                </div>
+                <div class="d-flex gap-5 mb-3">
+                    <input class="form-control" id="fCidade" type="text" required placeholder="Cidade">
+                    <input class="form-control" id="fUf" type="text" required placeholder="UF">
+                    <input class="form-control" id="fCredito" type="number" required placeholder="Crédito (R$)">
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success" formaction="javascript:salvar()">Salvar</button>
+                </div>
+            </form>
+
+        </section>
+        <section id="mostraDados" class="card p-5 mt-4 mx-5 shadow overflow-auto">
+            <table class="table table-bordered">
+                <thead class="bg-warning p-5 text-center">
+                    <tr id="cabecalho" class="">
+                        <th class="p-3 bg-warning">ID</th>
+                        <th class="p-3 bg-warning">Nome</th>
+                        <th class="p-3 bg-warning">E-mail</th>
+                        <th class="p-3 bg-warning">Telefone</th>
+                        <th class="p-3 bg-warning">Cidade</th>
+                        <th class="p-3 bg-warning">UF</th>
+                        <th class="p-3 bg-warning">Crédito Liberado</th>
+                        <th class="p-3 bg-warning">Excluir</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyTabela">
+                </tbody>
+            </table>
+
+        </section>
+    </main>
+    <footer class="d-flex justify-content-center">
+        <span class="">&copy; LNW Creations</span>
+    </footer>
+
+</body>
+
+</html>
