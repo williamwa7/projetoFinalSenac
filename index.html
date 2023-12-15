@@ -14,7 +14,7 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onload="mostrarClientes()">
     <header class="bg-primary d-flex py-3 justify-content-center align-items-center">
         <span class=" d-flex text-light fw-bold fs-4 align-content-center">CADASTRO DE CLIENTES</span>
     </header>
@@ -22,14 +22,14 @@
         <section id="entradaDados" class="card p-5 mt-4 mx-5 shadow bg-primary">
             <form action="#">
                 <div class="d-flex gap-5 mb-3">
-                    <input class="form-control" id="fNome" type="text" required placeholder="Nome Completo">
-                    <input class="form-control" id="fEmail" type="email" required placeholder="E-mail">
-                    <input class="form-control" id="fTel" type="tel" required placeholder="Telefone">
+                    <input class="form-control" id="fNome" type="text"  placeholder="Nome Completo">
+                    <input class="form-control" id="fEmail" type="email"  placeholder="E-mail">
+                    <input class="form-control" id="fTel" type="tel"  placeholder="Telefone">
                 </div>
                 <div class="d-flex gap-5 mb-3">
-                    <input class="form-control" id="fCidade" type="text" required placeholder="Cidade">
-                    <input class="form-control" id="fUf" type="text" required placeholder="UF">
-                    <input class="form-control" id="fCredito" type="number" required placeholder="Crédito (R$)">
+                    <input class="form-control" id="fCidade" type="text"  placeholder="Cidade">
+                    <input class="form-control" id="fUf" type="text"  placeholder="UF">
+                    <input class="form-control" id="fCredito" type="number"  placeholder="Crédito (R$)">
                 </div>
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-success" formaction="javascript:salvar()">Salvar</button>
@@ -52,6 +52,7 @@
                     </tr>
                 </thead>
                 <tbody id="bodyTabela">
+
                 </tbody>
             </table>
 
