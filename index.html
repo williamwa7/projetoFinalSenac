@@ -20,24 +20,33 @@
     </header>
     <main>
         <section id="entradaDados" class="card p-5 mt-4 mx-5 shadow bg-primary">
-            <form action="#">
-                <div class="d-flex gap-5 mb-3">
-                    <input class="form-control" id="fNome" type="text"  placeholder="Nome Completo">
-                    <input class="form-control" id="fEmail" type="email"  placeholder="E-mail">
-                    <input class="form-control" id="fTel" type="tel"  placeholder="Telefone">
+            <form action="#" id="fEntrada">
+                <div class="d-lg-flex gap-5 mb-3 ">
+                    <input class="form-control mt-3" id="fNome" type="text" required placeholder="Nome Completo">
+                    <input class="form-control mt-3" id="fEmail" type="email" required placeholder="E-mail">
+                    <input class="form-control mt-3" id="fTel" type="tel" required placeholder="Telefone">
                 </div>
-                <div class="d-flex gap-5 mb-3">
-                    <input class="form-control" id="fCidade" type="text"  placeholder="Cidade">
-                    <input class="form-control" id="fUf" type="text"  placeholder="UF">
-                    <input class="form-control" id="fCredito" type="number"  placeholder="Crédito (R$)">
+                <div class="d-lg-flex gap-5 mb-3">
+                    <input class="form-control mt-3" id="fCidade" type="text" required placeholder="Cidade">
+                    <input class="form-control mt-3" id="fUf" type="text" required placeholder="UF" maxlength="2">
+                    <input class="form-control mt-3" id="fCredito" type="number" required placeholder="Crédito (R$)">
                 </div>
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-success" formaction="javascript:salvar()">Salvar</button>
                 </div>
             </form>
-
         </section>
         <section id="mostraDados" class="card p-5 mt-4 mx-5 shadow overflow-auto">
+            <div class="row">
+                <div class="d-flex justify-content-start mb-3">
+                    <select id="selectStatus" class="form-select w-auto" aria-label="Default select example"
+                        onchange="mostrarClientes(this)">
+                        <option selected value="ativo">Ativos</option>
+                        <option value="inativo">Inativos</option>
+                        <option value="todos">Todos</option>
+                    </select>
+                </div>
+            </div>
             <table class="table table-bordered">
                 <thead class="bg-warning p-5 text-center">
                     <tr id="cabecalho" class="">
@@ -48,6 +57,7 @@
                         <th class="p-3 bg-warning">Cidade</th>
                         <th class="p-3 bg-warning">UF</th>
                         <th class="p-3 bg-warning">Crédito Liberado</th>
+                        <th class="p-3 bg-warning">Status</th>
                         <th class="p-3 bg-warning">Excluir</th>
                     </tr>
                 </thead>

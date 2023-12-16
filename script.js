@@ -1,4 +1,7 @@
 let clienteId = localStorage.length;
+let statusSelecionado = "ativo"
+
+
 
 function salvar() {
     clienteId++;
@@ -13,38 +16,58 @@ function salvar() {
         status: "ativo"
     }
     localStorage.setItem(clienteId, JSON.stringify(cliente));
-
+    document.getElementById("fEntrada").reset()
     mostrarClientes()
+
 }
 
 function deletar(idCliente) {
 
     const cliente = JSON.parse(localStorage.getItem(idCliente));
-    // const linhaClienteTabela = document.getElementById(`cliente${cliente.idCliente}`)
     cliente.status = "inativo"
     localStorage.setItem(idCliente, JSON.stringify(cliente));
     mostrarClientes()
 }
 
 
-function mostrarClientes() {
+function mostrarClientes(select) {
+    if (select) {
+        statusSelecionado = select.value
+    }
     const saida = document.getElementById("bodyTabela");
+
     saida.innerHTML = ""
     for (let i = 1; i <= localStorage.length; i++) {
         const cliente = JSON.parse(localStorage.getItem(i));
-        if (cliente.status == "ativo") {
+        if (cliente.status == statusSelecionado) {
             saida.innerHTML +=
                 `<tr id="cliente${cliente.idCliente}">
-            <td>${cliente.idCliente}</td>
-            <td>${cliente.nome}</td>
-            <td>${cliente.email}</td>
-            <td>${cliente.telefone}</td>
-            <td>${cliente.cidade}</td>
-            <td>${cliente.uf}</td>
-            <td>${cliente.credito}</td>
-            <td class="d-flex justify-content-center"><button class="btn btn-danger" onclick="deletar(${cliente.idCliente})">X</button></td>
-            </tr>`;
+                    <td>${cliente.idCliente}</td>
+                    <td>${cliente.nome}</td>
+                    <td>${cliente.email}</td>
+                    <td>${cliente.telefone}</td>
+                    <td>${cliente.cidade}</td>
+                    <td>${cliente.uf}</td>
+                    <td>${Number(cliente.credito).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                    <td>${cliente.status}</td>
+                    <td class="d-flex justify-content-center"><button class="btn btn-danger" onclick="deletar(${cliente.idCliente})">X</button></td>
+                </tr>`;
+        } else if (statusSelecionado == "todos") {
+            saida.innerHTML +=
+                `<tr id="cliente${cliente.idCliente}">
+                    <td>${cliente.idCliente}</td>
+                    <td>${cliente.nome}</td>
+                    <td>${cliente.email}</td>
+                    <td>${cliente.telefone}</td>
+                    <td>${cliente.cidade}</td>
+                    <td>${cliente.uf}</td>
+                    <td>${Number(cliente.credito).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                    <td>${cliente.status}</td>
+                    <td class="d-flex justify-content-center"><button class="btn btn-danger" onclick="deletar(${cliente.idCliente})">X</button></td>
+                </tr>`;
+
         }
 
     }
 }
+
