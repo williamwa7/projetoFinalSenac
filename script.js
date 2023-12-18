@@ -2,7 +2,6 @@ let clienteId = localStorage.length;
 let statusSelecionado = "ativo"
 
 
-
 function salvar() {
     clienteId++;
     const cliente = {
@@ -29,16 +28,29 @@ function deletar(idCliente) {
     mostrarClientes()
 }
 
+function reativar(idCliente) {
+    const cliente = JSON.parse(localStorage.getItem(idCliente));
+    cliente.status = "ativo";
+    localStorage.setItem(idCliente, JSON.stringify(cliente));
+    mostrarClientes();
+}
+
 
 function mostrarClientes(select) {
+    
     if (select) {
         statusSelecionado = select.value
     }
     const saida = document.getElementById("bodyTabela");
-
+    
     saida.innerHTML = ""
     for (let i = 1; i <= localStorage.length; i++) {
         const cliente = JSON.parse(localStorage.getItem(i));
+        let btnAcao = `
+            <button class="btn ${cliente.status == "ativo" ? "btn-danger" : "btn-secondary"}" 
+                onclick="${cliente.status == "ativo" ? "deletar" : "reativar"}(${cliente.idCliente})">
+                ${cliente.status == "ativo" ? "Inativar" : "Reativar"}
+            </button>`
         if (cliente.status == statusSelecionado) {
             saida.innerHTML +=
                 `<tr id="cliente${cliente.idCliente}">
@@ -50,7 +62,7 @@ function mostrarClientes(select) {
                     <td>${cliente.uf}</td>
                     <td>${Number(cliente.credito).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                     <td>${cliente.status}</td>
-                    <td class="d-flex justify-content-center"><button class="btn btn-danger" onclick="deletar(${cliente.idCliente})">X</button></td>
+                    <td class="d-flex justify-content-center">${btnAcao}</td>
                 </tr>`;
         } else if (statusSelecionado == "todos") {
             saida.innerHTML +=
@@ -63,9 +75,8 @@ function mostrarClientes(select) {
                     <td>${cliente.uf}</td>
                     <td>${Number(cliente.credito).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                     <td>${cliente.status}</td>
-                    <td class="d-flex justify-content-center"><button class="btn btn-danger" onclick="deletar(${cliente.idCliente})">X</button></td>
+                    <td class="d-flex justify-content-center">${btnAcao}</td>
                 </tr>`;
-
         }
 
     }
