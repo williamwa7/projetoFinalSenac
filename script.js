@@ -20,21 +20,12 @@ function salvar() {
 
 }
 
-function deletar(idCliente) {
-
+function modificarStatus(idCliente) {
     const cliente = JSON.parse(localStorage.getItem(idCliente));
-    cliente.status = "inativo"
-    localStorage.setItem(idCliente, JSON.stringify(cliente));
-    mostrarClientes()
-}
-
-function reativar(idCliente) {
-    const cliente = JSON.parse(localStorage.getItem(idCliente));
-    cliente.status = "ativo";
+    cliente.status = cliente.status === "ativo" ? "inativo" : "ativo";
     localStorage.setItem(idCliente, JSON.stringify(cliente));
     mostrarClientes();
 }
-
 
 function mostrarClientes(select) {
     
@@ -47,8 +38,8 @@ function mostrarClientes(select) {
     for (let i = 1; i <= localStorage.length; i++) {
         const cliente = JSON.parse(localStorage.getItem(i));
         let btnAcao = `
-            <button class="btn ${cliente.status == "ativo" ? "btn-danger" : "btn-secondary"}" 
-                onclick="${cliente.status == "ativo" ? "deletar" : "reativar"}(${cliente.idCliente})">
+            <button class="btn ${cliente.status == "ativo" ? "btn-danger" : "btn-success"}" 
+                onclick="modificarStatus(${cliente.idCliente})">
                 ${cliente.status == "ativo" ? "Inativar" : "Reativar"}
             </button>`
         if (cliente.status == statusSelecionado) {
@@ -61,7 +52,7 @@ function mostrarClientes(select) {
                     <td>${cliente.cidade}</td>
                     <td>${cliente.uf}</td>
                     <td>${Number(cliente.credito).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                    <td>${cliente.status}</td>
+                    <td class="fw-bold text-center ${cliente.status == "ativo" ? "text-success" : "text-danger"}">${cliente.status}</td>
                     <td class="d-flex justify-content-center">${btnAcao}</td>
                 </tr>`;
         } else if (statusSelecionado == "todos") {
@@ -74,7 +65,7 @@ function mostrarClientes(select) {
                     <td>${cliente.cidade}</td>
                     <td>${cliente.uf}</td>
                     <td>${Number(cliente.credito).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                    <td>${cliente.status}</td>
+                    <td class="fw-bold text-center ${cliente.status === "ativo" ? "text-success" : "text-danger"}">${cliente.status}</td>
                     <td class="d-flex justify-content-center">${btnAcao}</td>
                 </tr>`;
         }
